@@ -1,9 +1,9 @@
 const myLibrary = [];
-const libraryContainer = document.querySelector('.library-container')
+const body = document.querySelector('body')
 const newBookButton = document.querySelector('.new-book')
 const dialog = document.querySelector('dialog')
-const confirmButton = document.querySelector('.confirm') 
 const form = document.querySelector('form')
+const confirmButton = document.querySelector('.confirm') 
 
 //check if can/should make the above an id
 
@@ -24,6 +24,13 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayLibrary() {
+    const libraryContainer = document.querySelector('.library-container')
+    libraryContainer.remove();
+
+    const newLibraryContainer = document.createElement('div');
+    newLibraryContainer.classList.add(`library-container`);
+    body.append(newLibraryContainer)
+    
     myLibrary.forEach(book => {
        const bookCard = document.createElement('div');
        bookCard.classList.add('book-card');
@@ -40,8 +47,12 @@ function displayLibrary() {
             bookCard.append(div)
         }
        }
-       libraryContainer.append(bookCard);
+       newLibraryContainer.append(bookCard);
     })
+}
+
+function createNewLibrary() {
+    
 }
 
 newBookButton.addEventListener("click", () => {
