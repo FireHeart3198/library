@@ -1,6 +1,6 @@
 .library-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 20px; 
 }
 
@@ -11,4 +11,5 @@
     padding: 10px;
     background-color: rgb(170, 212, 247);
     border: solid 1px darkblue;
+    text-align: center;
 }
