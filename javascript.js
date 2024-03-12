@@ -1,5 +1,5 @@
 const myLibrary = [];
-const body = document.querySelector('body')
+const libraryContainer = document.querySelector('.library-container')
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -25,11 +25,15 @@ function displayLibrary() {
             const div = document.createElement('div')
             const className = info;
             div.classList.add(`${className}`)
-            div.textContent = book[info]
+            if (info === "pages") {
+                div.textContent = `${book[info]} pages`
+            } else {
+                div.textContent = book[info]
+            }
             bookCard.append(div)
         }
        }
-       body.append(bookCard);
+       libraryContainer.append(bookCard);
     })
 }
 
