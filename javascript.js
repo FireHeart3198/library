@@ -26,11 +26,12 @@ function addBookToLibrary(title, author, pages, read) {
 function displayLibrary() {
     const libraryContainer = document.querySelector('.library-container')
     libraryContainer.remove();
-    
+
     const newLibraryContainer = document.createElement('div');
     newLibraryContainer.classList.add(`library-container`);
     body.append(newLibraryContainer)
-    myLibrary.forEach(book => {
+    
+    myLibrary.forEach((book, index) => {
        const bookCard = document.createElement('div');
        bookCard.classList.add('book-card');
        for(info in book) {
@@ -46,12 +47,16 @@ function displayLibrary() {
             bookCard.append(div)
         }
        }
+       bookCard.setAttribute("data-book-number", `${index}`)
+
+       const removeButton = document.createElement('button');
+       removeButton.classList.add('book-remove');
+       removeButton.setAttribute("data-close-number", `${index}`)
+       removeButton.addEventListener("click", e => removeBook(e.target))
+       bookCard.append(removeButton)
+
        newLibraryContainer.append(bookCard);
     })
-}
-
-function createNewLibrary() {
-    
 }
 
 newBookButton.addEventListener("click", () => {
@@ -77,6 +82,14 @@ form.addEventListener("formdata", e => {
     displayLibrary();
 })
 
+function removeBook(target) {
+    bookNumber = target.getAttribute('data-close-number');
+
+    const bookToDelete = document.querySelector(`[data-book-number="${bookNumber}"`);
+    bookToDelete.remove();
+
+    myLibrary.splice(bookNumber, 1)
+}
 
 // books to check display
 addBookToLibrary('Cotillion', 'Georgette Heyer', '416', 'not yet read');
