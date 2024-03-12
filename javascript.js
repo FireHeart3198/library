@@ -1,5 +1,11 @@
 const myLibrary = [];
 const libraryContainer = document.querySelector('.library-container')
+const newBookButton = document.querySelector('.new-book')
+const dialog = document.querySelector('dialog')
+const confirmButton = document.querySelector('.confirm') 
+const form = document.querySelector('form')
+
+//check if can/should make the above an id
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -12,6 +18,7 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
+    console.log(title)
     const book = new Book(title, author, pages, read)
     myLibrary.push(book)
 }
@@ -36,6 +43,30 @@ function displayLibrary() {
        libraryContainer.append(bookCard);
     })
 }
+
+newBookButton.addEventListener("click", () => {
+    dialog.showModal();
+})
+
+confirmButton.addEventListener("click", e => {
+    e.preventDefault();
+    new FormData(form)
+    dialog.close();
+    form.reset();
+})
+
+form.addEventListener("formdata", e => {
+    const data = e.formData;
+    const newBookInfo = [];
+    console.log(data.values());
+    for(let value of data.values()) {
+        newBookInfo.push(value)
+    }
+
+    addBookToLibrary(...newBookInfo);
+    displayLibrary();
+})
+
 
 // books to check display
 addBookToLibrary('Cotillion', 'Georgette Heyer', '416', 'not yet read');
