@@ -17,6 +17,17 @@ function Book(title, author, pages, read) {
     }
 }
 
+Book.prototype.readBook = function () {
+    if(this.read === "read") {
+        this.read = "not yet read";
+    } else {
+        this.read = "read";
+    }
+    console.log(this.read)
+    displayLibrary();
+    //is this inefficient? bad practice?
+}
+
 function addBookToLibrary(title, author, pages, read) {
     console.log(title)
     const book = new Book(title, author, pages, read)
@@ -47,13 +58,19 @@ function displayLibrary() {
             bookCard.append(div)
         }
        }
-       bookCard.setAttribute("data-book-number", `${index}`)
+       bookCard.setAttribute("data-book-number", `${index}`);
 
        const removeButton = document.createElement('button');
        removeButton.classList.add('book-remove');
-       removeButton.setAttribute("data-close-number", `${index}`)
-       removeButton.addEventListener("click", e => removeBook(e.target))
-       bookCard.append(removeButton)
+       removeButton.setAttribute("data-close-number", `${index}`);
+       removeButton.addEventListener("click", e => removeBook(e.target));
+       bookCard.append(removeButton);
+
+       const readButton = document.createElement('button');
+       readButton.classList.add('read-button');
+       readButton.setAttribute("data-read-number", `${index}`);
+       readButton.addEventListener("click", e => toggleRead(e.target));
+       bookCard.append(readButton);
 
        newLibraryContainer.append(bookCard);
     })
@@ -89,6 +106,13 @@ function removeBook(target) {
     bookToDelete.remove();
 
     myLibrary.splice(bookNumber, 1)
+    displayLibrary();
+}
+
+function toggleRead(target) {
+    bookNumber = target.getAttribute('data-read-number');
+    myLibrary[bookNumber].readBook();
+    // might want to return read/not yet read and reset text.content of button
 }
 
 // books to check display
