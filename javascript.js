@@ -7,26 +7,28 @@ const confirmButton = document.querySelector('.confirm')
 
 //check if can/should make the above an id
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function() {
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    get info() {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+    }
+
+    readBook() {
+        if(this.read === "read") {
+            this.read = "not yet read";
+        } else {
+            this.read = "read";
+        }
+        displayLibrary();
     }
 }
 
-Book.prototype.readBook = function () {
-    if(this.read === "read") {
-        this.read = "not yet read";
-    } else {
-        this.read = "read";
-    }
-    console.log(this.read)
-    displayLibrary();
-    //is this inefficient? bad practice?
-}
 
 function addBookToLibrary(title, author, pages, read) {
     console.log(title)
