@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Library Project</title>
-        <link rel="stylesheet" href="style.css">
-        <script defer src="javascript.js"></script>
-    </head>
-    <body>
-        <button class="new-book">New Book</button>
-        <dialog>
-            <form action="" method="post">
-                <h1>Add a new book!</h1>
-                <h2>* indicates required field</h2>
-                <ul>
-                    <li>
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title">
-                    </li>
-                    <li>
-                        <label for="author">Author</label>
-                        <input type="text" id="author" name="author">
-                    </li>
-                    <li>
-                        <label for="pages">Total number of pages?</label>
-                        <input type="text" id="pages" name="pages">
-                        pages.
-                    </li>
-                    <!-- Feelings, Rating -->
-                    <li>
-                        <label for="read">Have you read the book?</label>
-                        <select id="read" name="read">
-                            <option value="read">Read</option>
-                            <option value="not yet read">Not yet read</option>
-                            <!-- use checkboxes here if styling is difficult -->
-                        </select>
-                    </li>
-                </ul>
-                <button value="cancel" formmethod="dialog">Cancel</button>
-                <button class="confirm" value="default">Confirm</button>
-            </form>
-        </dialog>
-        <div class="library-container"></div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library Project</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="javascript.js"></script>
+  </head>
+  <body>
+    <button class="new-book">New Book</button>
+    <dialog>
+      <form action="" method="post">
+        <h1>Add a new book!</h1>
+        <h2>* indicates required field</h2>
+        <ul>
+          <li>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required />
+          </li>
+          <li>
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required />
+          </li>
+          <li>
+            <label for="pages">Total number of pages?</label>
+            <input type="text" id="pages" name="pages" required />
+            pages.
+          </li>
+          <!-- Feelings, Rating -->
+          <li>
+            <label for="read">Have you read the book?</label>
+            <select id="read" name="read">
+              <option value="read">Read</option>
+              <option value="not yet read">Not yet read</option>
+              <!-- use checkboxes here if styling is difficult -->
+            </select>
+          </li>
+        </ul>
+        <button value="cancel" formmethod="dialog">Cancel</button>
+        <button class="confirm" value="default">Confirm</button>
+      </form>
+    </dialog>
+    <div class="library-container"></div>
+  </body>
 </html>
